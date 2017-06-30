@@ -1,0 +1,5 @@
+alert('Image Name succesfully changed');
+$('#exampleModal1').foundation('close');
+debugger
+$("#<%= @oldname %>").text("<%= escape_javascript(@image.name.to_s) %>");
+$('#<%= @oldname %>').attr('id', '<%= escape_javascript(@image.name.to_s) %>')

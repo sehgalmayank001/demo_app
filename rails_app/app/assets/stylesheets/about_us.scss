@@ -1,0 +1,28 @@
+// Place all the styles related to the AboutUs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//about us page
+
+.heading
+{
+  text-align: center;
+  background-color: #074E68;
+}
+
+.logo{
+  padding-top: 3%;
+}
+
+.logo-2{
+  padding-bottom: 3%;
+}
+
+.content-ab.row {
+  font-size: 18px;
+}
+
+.name-error, .email-error , .desc-error, .mobile-no-error , .pswd-error, .pswd-cnfrm-error{
+  display: none;
+}

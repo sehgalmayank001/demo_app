@@ -1,0 +1,45 @@
+  <h1 style="padding-left: 3% ;padding-top: 1%;">Gallery</h1>
+<!-- <div class="containerr"> -->
+  <% if !@images.any? %>
+    <h2> Sorry no images to display...!!! </h2>
+  <% else %>
+
+  <div class ="image-container row column">
+    <%  @images.each do |image| %>
+      <div class="containerr-i column small-12 large-3 medium-4 ">
+        <div id="<%= image.name %>" class="img-nm" ><%= image.name %></div>
+        <%= link_to image_tag(image.image_url(:thumb).to_s) , image.image_url , target: "_blank",
+            class: 'img-div'%>
+        <%= submit_tag " edit name",  data:{ open: "exampleModal1" } %>
+      </div>
+        <%= render :partial => 'update_name' , :locals => {:image => image} %>
+    <% end %>
+  </div></br>
+
+      <div class="containerr">
+
+    <%= paginate @images %>
+  <% end %>
+
+<br>
+<br>
+
+<h3>Upload Image</h3>
+<div id='error-container' class="error">
+</div>
+ <%= form_with(model: @image , scope: :image_uploaded, multipart: true)  do |f| %>
+ <div class=>
+   <%= f.label :name %>
+   <%= f.text_field :name , :required => true%>
+ </div>
+
+ <div class=>
+   <%= f.file_field :image, :required => true %>
+ </div>
+ <div class=>
+    <%= f.submit "Upload Image" %>
+  </div>
+ <% end %>
+ </div>
+ <br>
+ <!-- </div> -->

@@ -1,0 +1,32 @@
+// Place all the styles related to the gallery controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.image-container{
+  min-height: 245px;
+  margin: auto;
+  padding: 20px 50px;
+}
+
+// .containerr-i{
+//   width: 30%;
+// margin: 0 10px;
+// display: inline-grid;
+// max-height: 218px;
+// }
+
+.containerr-i.column.small-12.large-3.medium-4.large-offset-1{
+  margin-bottom: 6%;
+}
+
+.pagination{
+  text-align: center;
+}
+
+// .img-nm{
+//   text-align: center;
+// }
+
+a.img-div {
+    margin: auto;
+}

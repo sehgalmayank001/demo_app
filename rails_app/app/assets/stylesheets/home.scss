@@ -1,0 +1,84 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$foundation-5-top-bar-bg: #074E68;
+$foundation-5-top-bar-text-color: $white;
+
+.foundation-5-top-bar {
+  background: $foundation-5-top-bar-bg;
+  color: $foundation-5-top-bar-text-color;
+
+  .menu {
+    background: $foundation-5-top-bar-bg;
+
+    a {
+      color: $foundation-5-top-bar-text-color;
+    }
+  }
+
+  .is-dropdown-submenu {
+    border: 0;
+  }
+
+  .is-dropdown-submenu-item.opens-right a::after {
+    border-color: transparent transparent transparent $foundation-5-top-bar-text-color;
+  }
+
+  .js-drilldown-back > a::before {
+    border-color: transparent $foundation-5-top-bar-text-color transparent transparent;
+  }
+
+  .is-drilldown-submenu-parent > a::after {
+    border-color: transparent transparent transparent $foundation-5-top-bar-text-color;
+  }
+
+  .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
+    border-color: $foundation-5-top-bar-text-color transparent transparent;
+  }
+}
+
+
+
+#footer{
+    position: fixed;
+    bottom: 0px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    background-color: #074E68;
+}
+
+ul.footer-nav-menu {
+    margin-top: 1rem;
+}
+.footer-nav-menu-item a{
+  color: white;
+}
+.bottom_contact{
+  display: inline-block;
+}
+
+.main {
+    width: 100%;
+
+    padding-top: 60px;
+    height:auto;
+    position: relative;
+    min-height:100%;
+}
+
+.content {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 2%;
+    padding-bottom: 70px;
+}
+.containerr {
+  //  max-width: 30%;
+    margin: auto;
+}
+
+.error{
+  color: red;
+}

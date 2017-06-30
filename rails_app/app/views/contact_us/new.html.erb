@@ -1,0 +1,26 @@
+  <h1 style="padding-left: 3%;padding-top: 1%;">Contact Us</h1>
+<%= form_for :contact_us , url: contact_us_path, method: :post, :html => {:id => "contact_form"} do |f| %>
+<div>
+    <%=f.label 'Name' %>     <span class="error name-error"> Name should have alphabets only.</span>
+    <%=f.text_field 'name', :required => true, :onchange => "validate_contact_form()" %>
+</div>
+<div>
+    <%=f.label 'Email' %>    <span class="error email-error">Invalid Email</span>
+    <%=f.email_field 'email', :required => true, :onchange => "validate_contact_form()"%>
+</div>
+<div>
+    <%=f.label 'Mobile No.' %>   <span class="error mobile-no-error">Mobile Number must be of 10 digits.</span>
+    <%=f.number_field 'mobile_no', :required => true, :onchange => "validate_contact_form()" %>
+</div>
+<div>
+    <%=f.label 'Description' %>  <span class="error desc-error">Some Description is require.</span>
+    <%=f.text_area 'description', :required => true, :onchange => "validate_contact_form()"%>
+</div>
+    <div><%= f.submit 'Contact Us', disabled: true, :id => "contact_submit_btn" %></div>
+<% end %>
+
+<br>
+<div style="height: 300px ;margin-bottom:30px;">
+  <iframe height="300" class="columns small-12 large-7 medium 7" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q='+YOUR_LAT+','+YOUR_LON+'&hl=es;z=14&amp;output=embed"></iframe>
+  <br />
+</div>

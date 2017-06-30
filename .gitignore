@@ -1,0 +1,3 @@
+rails_app/Gemfile.lock
+rails_app/public/uploads/*
+.vagrant/*

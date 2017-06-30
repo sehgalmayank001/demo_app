@@ -1,0 +1,30 @@
+<div class="top-bar foundation-5-top-bar">
+  <div class="top-bar-title">
+    <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+      <button class="menu-icon" type="button" data-toggle></button>
+    </span>
+    <strong><%= link_to "Maropost" , root_path , style: 'color:white;'%></strong>
+  </div>
+  <div id="responsive-menu">
+    <div class="top-bar-left">
+      <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown" data-auto-height="true" data-animate-height="true">
+        <li>
+          <%= link_to "About Us" , about_us_path %>
+        </li>
+        <li><%= link_to "Contact Us" , contact_us_path %></li>
+        <li><%=  link_to "Gallery" , images_path %></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu vertical medium-horizontal">
+        <% if user_signed_in? %>
+        <li><%= current_user.email %></li>
+        <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %><li>
+        <% else %>
+        <li><%= link_to "Sign up", new_user_registration_path %> </li>
+          <li><%= link_to "Sign in", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
