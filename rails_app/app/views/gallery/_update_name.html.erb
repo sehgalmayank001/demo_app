@@ -1,8 +1,8 @@
-<div class="reveal" id="exampleModal1" data-reveal>
+<div class="reveal" id="exampleModal<%= image.id %>" data-reveal>
   <h3> Update Image name</h3>
-  <div id='error-container2' class="error">
+  <div id='error-container2' class="error error-container2">
   </div>
-  <%= form_with(model: @image , scope: :image_name_change,  multipart: true, url: image_path(image),method: :PUT)  do |f| %>
+  <%= form_with(model: @image , scope: :image_name_change,  multipart: true, url: image_path(image), :id => "update_name_form", method: :PUT)  do |f| %>
     <div class="">
       <%= f.label :name  %>
       <%= f.text_field :name , :required => true%>

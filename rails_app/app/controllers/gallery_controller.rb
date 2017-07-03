@@ -19,8 +19,9 @@ class GalleryController < ApplicationController
   def update
     @image= Image.find(params[:id])
     @oldname = @image.name
+    @id = params[:id]
     debugger
-    if @image.update(update_name)
+    if @image.update(name: update_name[:name])
       respond_to do |format|
         format.js { render :template => 'gallery/update.js.erb'}
       end
