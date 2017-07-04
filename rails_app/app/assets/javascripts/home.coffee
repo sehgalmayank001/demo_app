@@ -62,24 +62,24 @@
 
 @validate_signup_form = ->
   signup_email = $('#user_email').val()
-  user_password = $('#user_password').val()
-  user_password_confirmation = $('#user_password_confirmation').val()
+  # user_password = $('#user_password').val()
+  # user_password_confirmation = $('#user_password_confirmation').val()
   if signup_email != ''
     $('.email-error')[0].style.display = 'none'
     email = validateEmail(signup_email)
     if !email
       $('.email-error')[0].style.display = 'inline-block'
-  if user_password != ''
-    $('.pswd-error')[0].style.display = 'none'
-    pswd = stringlength(user_password, 6, 10) and validpassword(user_password)
-    if !pswd
-      $('.pswd-error')[0].style.display = 'inline-block'
-   if user_password_confirmation != ''
-        $('.pswd-cnfrm-error')[0].style.display = 'none'
-        pswd_cnfrm = user_password.localeCompare(user_password_confirmation)
-        if pswd_cnfrm != 0
-         $('.pswd-cnfrm-error')[0].style.display = 'inline-block'
-  if email and pswd and pswd_cnfrm == 0
+  # if user_password != ''
+  #   $('.pswd-error')[0].style.display = 'none'
+  #   pswd = stringlength(user_password, 6, 10) and validpassword(user_password)
+  #   if !pswd
+  #     $('.pswd-error')[0].style.display = 'inline-block'
+  #  if user_password_confirmation != ''
+  #       $('.pswd-cnfrm-error')[0].style.display = 'none'
+  #       pswd_cnfrm = user_password.localeCompare(user_password_confirmation)
+  #       if pswd_cnfrm != 0
+  #        $('.pswd-cnfrm-error')[0].style.display = 'inline-block'
+  if email
     $('#signup_submit_btn').removeAttr 'disabled'
   else
     $('#signup_submit_btn').attr 'disabled', 'true'

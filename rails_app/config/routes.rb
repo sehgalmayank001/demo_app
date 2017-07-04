@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  devise_for :users
-  root to: "about_us#show"
-  resources :gallery , :except=>[:destroy], as: 'images'
+  devise_for :users ,:controllers => { :registrations => "registrations" }
+  root to: "home#index"
+  resources :gallery , :except=>[:destroy], as: 'images' do
+    collection { post :import}
+  end
 
   match '/contact_us', to: 'contact_us#send_mail' , via: [:post]
   match '/contact_us', to: 'contact_us#new' , via: [:get]

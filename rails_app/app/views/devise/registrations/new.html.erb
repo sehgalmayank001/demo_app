@@ -5,10 +5,11 @@
 
   <div class="field">
     <%= f.label :email %>  <span class="error email-error">Invalid Email</span><br />
-    <%= f.email_field :email, autofocus: true ,:required => true, :onchange => "validate_signup_form()" %>
+    <%= f.email_field :email, autofocus: true ,:required => true , :onchange => "validate_signup_form()" %>
+    <!-- , :onchange => "validate_signup_form()" -->
   </div>
 
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :password %> <span class="error pswd-error">Password must have at least one uppercase letter, one lowercase letter, one number and one special character</span>
     <% if @minimum_password_length %>
     <em>(Password b/w <%= @minimum_password_length %> to 10 characters)</em>
@@ -19,10 +20,11 @@
   <div class="field">
     <%= f.label :password_confirmation %> <span class="error pswd-cnfrm-error">Password & Password Confirmation don't match</span><br />
     <%= f.password_field :password_confirmation, autocomplete: "off",:required => true, :onchange => "validate_signup_form()" %>
-  </div>
+  </div> -->
 
   <div class="actions">
     <%= f.submit "Sign up", disabled: true, :id => "signup_submit_btn"%>
+    <!-- disabled: true, -->
   </div>
 <% end %>
 

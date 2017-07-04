@@ -1,0 +1,12 @@
+<div class="reveal" id="csvUploadModal" data-reveal>
+  <h1>Upload</h1>
+  <div id="csv_error" class="error">
+ </div>
+ <%= form_with(scope: :csv_upload,  multipart: true, url: import_images_path )  do |f| %>
+     <%= f.file_field :file, :required => true %>
+     <%= f.submit "Import" ,'data-disable-with' => "Please wait.."%>
+  <% end %>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

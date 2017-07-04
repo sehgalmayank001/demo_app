@@ -13,6 +13,7 @@ gem 'devise'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
+# gem 'remotipart'
 gem 'rails', '~> 5.1.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

@@ -1,7 +1,7 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+$dropdownmenu-arrows: true;
 $foundation-5-top-bar-bg: #074E68;
 $foundation-5-top-bar-text-color: $white;
 
@@ -45,6 +45,18 @@ $foundation-5-top-bar-text-color: $white;
     margin-left: 16px;
     margin-right: 16px;
 }
+
+.curr_user_email{
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+@media screen and (max-width: 640px) {
+  #chng_pass{
+    position: initial;
+  }
+}
+
 
 
 #footer{
