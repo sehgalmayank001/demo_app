@@ -9,8 +9,10 @@ class Image < ApplicationRecord
     cnt=0
     CSV.foreach(file.path, headers: true) do |row|
       row = row.to_hash
+      if cnt ==0 && (!row.has_key?("name")||  !row.has_key?("image") )
+        return @errors << "Headers missing in file."
+      end
       img = Image.new
-      #photo = open("#{Rails.root.join('ch',row[1])}")
       img.image = ImageUploader.new
       img.remote_image_url = row['image']
       img.name = row['name']

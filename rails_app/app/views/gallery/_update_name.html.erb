@@ -1,13 +1,16 @@
 <div class="reveal" id="exampleModal<%= image.id %>" data-reveal>
-  <h3> Update Image name</h3>
+  <h3> Update Image</h3>
   <div id='error-container2' class="error error-container2">
   </div>
-  <%= form_with(model: @image , scope: :image_name_change,  multipart: true, url: image_path(image), :id => "update_name_form", method: :PUT)  do |f| %>
+  <%= form_with(model: @image , scope: :image_name_change,  multipart: true, url: image_path(image), :class => "formm update_name_form", method: :PUT)  do |f| %>
     <div class="">
       <%= f.label :name  %>
-      <%= f.text_field :name , :required => true%>
+      <%= f.text_field :name, :id=>"new_name_field_"+ image.id.to_s ,:onchange=> "atleast_one_field(" + image.id.to_s+")" %>
     </div>
-       <%= f.submit "update" , 'data-disable-with' => "Please wait.." %>
+    <div class=>
+      <%= f.file_field :image, :id=>"new_image_field_"+ image.id.to_s , :onchange=> "atleast_one_field(" + image.id.to_s+")" %>
+    </div>
+       <%= f.submit "update" , 'data-disable-with' => "Please wait..", :id=>"change_submit_btn"+ image.id.to_s ,  disabled: true %>
     <% end %>
   <button class="close-button" data-close aria-label="Close modal" type="button">
     <span aria-hidden="true">&times;</span>

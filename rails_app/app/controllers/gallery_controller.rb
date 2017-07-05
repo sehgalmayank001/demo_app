@@ -20,9 +20,16 @@ class GalleryController < ApplicationController
     @image= Image.find(params[:id])
     @oldname = @image.name
     @id = params[:id]
-    if @image.update(name: update_name[:name])
-      respond_to do |format|
-        format.js { render :template => 'gallery/update.js.erb'}
+     update_name[:name]!= "" ? name_up = update_name[:name] : name_up = @oldname
+     update_name[:image]!= nil ? img_up = update_name[:image] : img_up = @image.image
+    debugger
+    if @image.update(name: name_up, image: img_up)
+      if update_name[:image]== nil
+        respond_to do |format|
+          format.js { render :template => 'gallery/update.js.erb'}
+        end
+      else
+        redirect_to images_path, alert: "Image Changed."
       end
     else
       @error_message = @image.errors.full_messages[0]
@@ -39,7 +46,7 @@ class GalleryController < ApplicationController
         format.js { render :template => 'gallery/csv_error.js.erb'}
       end
     else
-      redirect_to images_path
+      redirect_to images_path, alert: "Images Uploaded"
     end
   end
 
@@ -49,7 +56,7 @@ class GalleryController < ApplicationController
   end
 
   def update_name
-    params.require(:image_name_change).permit(:name)
+    params.require(:image_name_change).permit(:name, :image)
   end
 
   def upload_csv

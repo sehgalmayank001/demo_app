@@ -2,4 +2,4 @@ alert('Image Name succesfully changed');
 $('#exampleModal<%= @id %>').foundation('close');
 $("#<%= @oldname %>").text("<%= escape_javascript(@image.name.to_s) %>");
 $('#<%= @oldname %>').attr('id', '<%= escape_javascript(@image.name.to_s) %>');
-$('#update_name_form')[0].reset();
+$(' #exampleModal<%= @id %> .update_name_form')[0].reset();

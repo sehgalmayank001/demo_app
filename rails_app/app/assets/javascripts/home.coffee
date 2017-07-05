@@ -103,3 +103,13 @@
   else
     $('#signin_submit_btn').attr 'disabled', 'true'
   return
+
+@match_passords = ->
+  user_password = $('#user_password').val()
+  user_password_confirmation = $('#user_password_confirmation').val()
+  if user_password_confirmation != ''
+        $('.pswd-cnfrm-error')[0].style.display = 'none'
+        pswd_cnfrm = user_password.localeCompare(user_password_confirmation)
+        if pswd_cnfrm != 0
+         $('.pswd-cnfrm-error')[0].style.display = 'inline-block'
+  return

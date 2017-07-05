@@ -9,12 +9,12 @@
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em><br />
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "off", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.label :password_confirmation, "Confirm new password" %><span class="error pswd-cnfrm-error">Password & Password Confirmation don't match</span><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", required: true , :onchange=> "match_passords()"%>
   </div>
 
   <div class="actions">

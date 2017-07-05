@@ -10,7 +10,7 @@
         <div id="<%= image.name %>" class="img-nm" ><%= image.name %></div>
         <%= link_to image_tag(image.image_url(:thumb).to_s) , image.image_url , target: "_blank",
             class: 'img-div'%>
-        <%= submit_tag " edit name",  data:{ open: "exampleModal"+image.id.to_s } %>
+        <%= submit_tag " edit ",  data:{ open: "exampleModal"+image.id.to_s }, style: "width: 90.71px" %>
       </div>
         <%= render :partial => 'update_name' , :locals => {:image => image} %>
     <% end %>

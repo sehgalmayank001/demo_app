@@ -14,6 +14,7 @@
 //= require rails-ujs
 //= require foundation
 //= require home
+//= require gallery
 //= require turbolinks
 
 
@@ -21,7 +22,12 @@ $(document).on('turbolinks:load', function() {
   $(function(){ $(document).foundation(); });
   $( ".image-container" ).children().last().addClass('end');
   $( ".image-container" ).children().first().addClass('large-offset-1');
+  $('.reveal').bind('closed.zf.reveal', function () {
+    $(this).find('.formm')[0].reset();
+    $(this).find(".error-container2").html("")
+  });
 });
+
 
 
 // $(function(){ $(document).foundation(); });
