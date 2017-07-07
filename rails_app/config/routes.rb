@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   match '/contact_us', to: 'contact_us#send_mail' , via: [:post]
   match '/contact_us', to: 'contact_us#new' , via: [:get]
   match '/about_us', to: 'about_us#show', via: [:get]
+  match "*path" => redirect("/"), via: [:get, :post]
 end

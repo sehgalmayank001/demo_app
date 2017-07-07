@@ -1,5 +1,15 @@
   <h1 style="padding-left: 3%;padding-top: 1%;">Contact Us</h1>
-<%= form_for :contact_us , url: contact_us_path, method: :post, :html => {:id => "contact_form"} do |f| %>
+<%= form_for :person , url: contact_us_path, method: :post, :html => {:id => "contact_form"} do |f| %>
+
+<% if @person.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @person.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <div>
     <%=f.label 'Name' %>     <span class="error name-error"> Name should have alphabets only.</span>
     <%=f.text_field 'name', :required => true, :onchange => "validate_contact_form()" %>
@@ -9,8 +19,9 @@
     <%=f.email_field 'email', :required => true, :onchange => "validate_contact_form()"%>
 </div>
 <div>
-    <%=f.label 'Mobile No.' %>   <span class="error mobile-no-error">Mobile Number must be of 10 digits.</span>
-    <%=f.number_field 'mobile_no', :required => true, :onchange => "validate_contact_form()" %>
+    <%=f.label 'Mobile No.' %>   <span class="error mobile-no-error-dig">Mobile Number must be of 10 digits.</span>
+    <span class="error mobile-no-error">Mobile Number must only contain digits.</span>
+    <%=f.text_field 'mobile_no', :required => true, :onchange => "validate_contact_form()" %>
 </div>
 <div>
     <%=f.label 'Description' %>  <span class="error desc-error">Some Description is require.</span>

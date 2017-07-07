@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off", required: true %>
+    <%= f.password_field :password, autocomplete: "off", required: true, :onchange=> "double_pswd_check()" %>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
@@ -27,8 +27,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off", required: true %>
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+    <span class="error pswd-same-error">Password & current password are same.</span><br />
+    <%= f.password_field :current_password, autocomplete: "off", required: true , :onchange => "not_repeated()"%>
   </div>
 
   <div class="actions">

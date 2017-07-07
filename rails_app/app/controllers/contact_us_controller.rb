@@ -1,14 +1,20 @@
 class ContactUsController < ApplicationController
   def new
+    @person = ContactUs.new
   end
 
   def send_mail
     person = contact_us_params
-    UserMailer.contact_us(person).deliver!
+    @person=ContactUs.new(person)
+    if @person.save
+      UserMailer.contact_us(person).deliver!
+    else
+      render 'new'
+    end
   end
   private
 
   def contact_us_params
-    params.require(:contact_us).permit(:name, :email, :mobile_no, :description)
+    params.require(:person).permit(:name, :email, :mobile_no, :description)
   end
 end

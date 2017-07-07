@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   after_create :send_registratio_mail
+  has_many :images
 
   private
   def send_registratio_mail

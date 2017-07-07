@@ -1,11 +1,12 @@
 class GalleryController < ApplicationController
-    before_action :authenticate_user!
+
   def index
-    @images = Image.order("created_at DESC").page(params[:page]).per(3)
+    @images = current_user.images.order("created_at DESC").page(params[:page]).per(3)
   end
 
   def create
     @image = Image.new(image_upload_params)
+    @image.user_id = current_user.id
     if @image.save
         redirect_to images_path
     else
@@ -22,7 +23,6 @@ class GalleryController < ApplicationController
     @id = params[:id]
      update_name[:name]!= "" ? name_up = update_name[:name] : name_up = @oldname
      update_name[:image]!= nil ? img_up = update_name[:image] : img_up = @image.image
-    debugger
     if @image.update(name: name_up, image: img_up)
       if update_name[:image]== nil
         respond_to do |format|
@@ -40,7 +40,7 @@ class GalleryController < ApplicationController
   end
 
   def import
-    @errors = Image.import(upload_csv[:file])
+    @errors = Image.import(upload_csv[:file],current_user.id)
     if @errors.present?
       respond_to do |format|
         format.js { render :template => 'gallery/csv_error.js.erb'}

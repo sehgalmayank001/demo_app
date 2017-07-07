@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :email %>  <span class="error email-error">Invalid Email</span><br />
-    <%= f.email_field :email, autofocus: true ,:required => true , :onchange => "validate_signup_form()" %>
+    <%= f.email_field :email, autofocus: true ,:required => true %>
     <!-- , :onchange => "validate_signup_form()" -->
   </div>
 
@@ -23,7 +23,7 @@
   </div> -->
 
   <div class="actions">
-    <%= f.submit "Sign up", disabled: true, :id => "signup_submit_btn"%>
+    <%= f.submit "Sign up", :id => "signup_submit_btn"%>
     <!-- disabled: true, -->
   </div>
 <% end %>
