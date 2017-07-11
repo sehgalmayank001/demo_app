@@ -8,7 +8,7 @@ class Api::UsersController < Api::ApiController
     if user.save
       render json: user, status: 200
     else
-      render json: { errors: user.errors }, status: 500
+      render json: { message: user.errors }, status: 500
     end
   end
 

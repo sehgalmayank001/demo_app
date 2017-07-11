@@ -8,7 +8,7 @@ class Api::ContactUsController < Api::ApiController
       UserMailer.contact_us(person).deliver!
       render json: {response: "check your mail."}, status: 200
     else
-      render json: { errors: person.errors }, status: 500
+      render json: { message: person.errors }, status: 500
     end
   end
   private

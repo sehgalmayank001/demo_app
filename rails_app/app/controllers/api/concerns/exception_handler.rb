@@ -5,7 +5,7 @@ module Api::Concerns
 
     included do
       rescue_from ActiveRecord::RecordNotFound do |e|
-        json_response({ message: e.message }, :not_found)
+        json_response({ message: e.message }, :nternal_server_error)
       end
 
       rescue_from ActiveRecord::RecordInvalid do |e|

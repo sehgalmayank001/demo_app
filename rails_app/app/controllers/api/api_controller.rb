@@ -7,7 +7,5 @@ module Api
     respond_to :json
     skip_before_action :authenticate_user!
     before_action :authenticate_with_token!
-
-
   end
 end
