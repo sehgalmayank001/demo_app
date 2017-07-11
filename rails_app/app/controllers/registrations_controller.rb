@@ -1,12 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
-
+  include GeneratePassword
   def new
     super
   end
 
   def create
     build_resource(sign_up_params)
-    resource.password = (0...2).map { (97 + rand(26)).chr }.join + Random.rand(9999999).to_s + (65 + rand(26)).chr
+    resource.password = paswd_gen
      resource.save
      yield resource if block_given?
      if resource.persisted?

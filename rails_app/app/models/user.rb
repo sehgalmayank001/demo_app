@@ -4,11 +4,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :auth_token, uniqueness: true
+  has_many :images, dependent: :destroy
+  before_validation :generate_authentication_token!
   after_create :send_registratio_mail
-  has_many :images
 
   private
   def send_registratio_mail
     UserMailer.registeration_mail(self).deliver!
+  end
+
+  def generate_authentication_token!
+    begin
+      self.auth_token = Devise.friendly_token
+    end while self.class.exists?(auth_token: auth_token)
   end
 end

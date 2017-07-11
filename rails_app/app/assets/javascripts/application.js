@@ -17,7 +17,6 @@
 //= require gallery
 //= require turbolinks
 
-
 $(document).on('turbolinks:load', function() {
   $(function(){ $(document).foundation(); });
   $( ".image-container" ).children().last().addClass('end');
@@ -27,7 +26,3 @@ $(document).on('turbolinks:load', function() {
     $(this).find(".error-container2").html("")
   });
 });
-
-
-
-// $(function(){ $(document).foundation(); });

@@ -2,6 +2,7 @@ class Image < ApplicationRecord
   require 'csv'
   require 'uri'
   mount_uploader :image, ImageUploader
+  mount_base64_uploader :image, ImageUploader
   validates_presence_of :image
   validate :name_validation
   belongs_to :user
@@ -33,10 +34,6 @@ class Image < ApplicationRecord
         cnt+=1
       end
     @errors
-  end
-
-  def self.validate_url?(url)
-     url =~ URI::regexp
   end
 
 private

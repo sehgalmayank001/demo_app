@@ -1,6 +1,7 @@
   <h1 style="padding-left: 3% ;padding-top: 1%;">Gallery</h1>
   <% if !@images.any? %>
     <h2> Sorry no images to display...!!! </h2>
+    <div class="containerr">
   <% else %>
 
   <div class ="image-container row column">
@@ -8,11 +9,9 @@
       <div class="containerr-i column small-12 large-3 medium-4 ">
         <div id="<%= image.name %>" class="img-nm" ><%= image.name %></div>
         <%= link_to image.image_url , target: "_blank" , :action => 'go', class: 'img-div' do %>
-        <div class="img-divv" style="background-image: url(<%= image.image_url(:thumb).to_s%>);">
-        </div>
-        <!-- <%= link_to image_tag(image.image_url(:thumb).to_s, class: 'my_class') , image.image_url , target: "_blank",
-            class: 'img-div'%></div> -->
-            <%end %>
+          <div class="img-divv" style="background-image: url(<%= image.image_url(:thumb).to_s%>);">
+          </div>
+        <%end %>
         <%= submit_tag " edit ",  data:{ open: "exampleModal"+image.id.to_s }, style: "width: 90.71px" %>
       </div>
         <%= render :partial => 'update_name' , :locals => {:image => image} %>
