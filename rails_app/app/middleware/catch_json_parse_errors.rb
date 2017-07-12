@@ -5,7 +5,6 @@ class CatchJsonParseErrors
 
   def call(env)
     begin
-      debugger
       unless env['CONTENT_TYPE'] =~ /application\/json/
         error_output = "CONTENT_TYPE must be application/json"
         return [

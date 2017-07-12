@@ -2,7 +2,6 @@ class Api::ContactUsController < Api::ApiController
   # before_action :authenticate_with_token!
 
   def send_mail
-    debugger
     person = contact_us_params
     if !contact_us_params.has_key?(:name) then raise ActionController::ParameterMissing.new('name') end
     if !contact_us_params.has_key?(:email) then raise ActionController::ParameterMissing.new('email') end

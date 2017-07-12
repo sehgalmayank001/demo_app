@@ -13,7 +13,6 @@ class Api::GalleryController < Api::ApiController
   end
 
   def show
-    debugger
     unless params[:id] =~ /\A\d+\z/
       render json: { message: "id should only be a number", status: "Failure" ,code: "500"}, status: 500
       return

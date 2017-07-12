@@ -4,6 +4,6 @@ class Api::ErrorsController < Api::ApiController
   end
 
   def bad
-     render json:{message: "invalid CONTENT_TYPE" } , status: :not_acceptable
+     render json:{message: "invalid format" } , status: :not_acceptable
   end
 end
