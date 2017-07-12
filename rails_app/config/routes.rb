@@ -12,10 +12,12 @@ Rails.application.routes.draw do
   match '/contact_us', to: 'contact_us#new' , via: [:get]
   match '/about_us', to: 'about_us#show', via: [:get]
 
-  namespace :api, defaults: {format: :json}  do
+  namespace :api,  constraints:{format: :json}  do
     resources :users, :only => [:create]
     post '/contact_us', to: 'contact_us#send_mail'
     resources :gallery, :only => [:create,:show], as: 'images'
+    match '/:invalid_format', to: 'errors#bad', via: [:get, :post]
+    match "*path", to: 'errors#show', via: [:get, :post]
   end
   match "*path" => redirect("/"), via: [:get, :post]
 end
