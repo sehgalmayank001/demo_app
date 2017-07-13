@@ -5,13 +5,13 @@ class CatchJsonParseErrors
 
   def call(env)
     begin
-      unless env['CONTENT_TYPE'] =~ /application\/json/
-        error_output = "CONTENT_TYPE must be application/json"
-        return [
-          400, { "Content-Type" => "application/json" },
-          [ { status: 400, error: error_output }.to_json ]
-        ]
-      end
+      # unless env['CONTENT_TYPE'] =~ /application\/json/
+      #   error_output = "CONTENT_TYPE must be application/json"
+      #   return [
+      #     400, { "Content-Type" => "application/json" },
+      #     [ { status: 400, error: error_output }.to_json ]
+      #   ]
+      # end
       @app.call(env)
     rescue ActionDispatch::Http::Parameters::ParseError => error
       if env['CONTENT_TYPE'] =~ /application\/json/
