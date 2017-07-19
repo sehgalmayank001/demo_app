@@ -15,6 +15,8 @@ module RailsApp
     require "./app/middleware/catch_json_parse_errors.rb"
     config.middleware.insert_before Rack::Head, CatchJsonParseErrors
     config.autoload_paths << Rails.root.join('lib')
+    # config.active_job.queue_adapter = :sidekiq
+    config.web_console.whitelisted_ips = '10.0.2.2'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

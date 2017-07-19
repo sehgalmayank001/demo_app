@@ -1,8 +1,9 @@
 <div class="reveal" id="csvUploadModal" data-reveal>
   <h1>Upload</h1>
   <div id="csv_error" class="error error-container2">
-    <span class="error import_file_error">Only .csv files supported</span>
- </div>
+ </div><span class="error import_file_error">
+   Only .csv files supported
+ </span>
  <%= form_with(scope: :csv_upload,  multipart: true, url: import_images_path, id: 'csv_form', class: "formm")  do |f| %>
      <%= f.file_field :file, :required => true, :onchange =>"check_file_type()", :id=>"import_csv_field" %>
      <%= f.submit "Import" ,'data-disable-with' => "Please wait..", :id => "import_btn"%>

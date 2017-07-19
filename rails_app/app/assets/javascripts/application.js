@@ -24,5 +24,7 @@ $(document).on('turbolinks:load', function() {
   $('.reveal').bind('closed.zf.reveal', function () {
     $(this).find('.formm')[0].reset();
     $(this).find(".error-container2").html("")
+    $(this).find('.import_file_error')[0].style.display = 'none'
   });
+   $('div[onchange]').trigger('onchange');
 });

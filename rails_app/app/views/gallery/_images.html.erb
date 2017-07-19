@@ -1,0 +1,16 @@
+<div class ="image-container row column">
+  <%  @images.each do |image| %>
+   <% cache(image, expires_in:5.minutes) do%>
+    <div class="containerr-i column small-12 large-3 medium-4 ">
+      <div id="<%= image.name %>" class="img-nm" ><%= image.name %></div>
+      <%= link_to image.image_url , target: "_blank" , :action => 'go', class: 'img-div' do %>
+        <div class="img-divv" style="background-image: url(<%= image.image_url(:thumb).to_s%>);">
+        </div>
+      <%end %>
+      <%= submit_tag " edit ",  data:{ open: "exampleModal"+image.id.to_s }, style: "width: 90.71px" %>
+    </div>
+      <%= render :partial => 'update_name' , :locals => {:image => image} %>
+    <% end %>
+  <%end %>
+</div></br>
+    

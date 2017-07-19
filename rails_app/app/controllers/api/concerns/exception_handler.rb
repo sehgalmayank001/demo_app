@@ -4,9 +4,9 @@ module Api::Concerns
     extend ActiveSupport::Concern
 
     included do
-      # rescue_from ActiveRecord::RecordNotFound do |e|
-      #   json_response({ message: e.message }, :internal_server_error)
-      # end
+      rescue_from ActiveRecord::RecordNotFound do |e|
+        json_response2("No Images Found","failure","500",:internal_server_error)
+      end
       #
       # rescue_from ActiveRecord::RecordInvalid do |e|
       #   json_response({ message: e.message }, :unprocessable_entity)

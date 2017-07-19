@@ -25,9 +25,9 @@
 </div>
 <div>
     <%=f.label 'Description' %>  <span class="error desc-error">Some Description is require.</span>
-    <%=f.text_area 'description', :required => true, :onchange => "validate_contact_form()"%>
+    <%=f.text_area 'description', :required => true%>
 </div>
-    <div><%= f.submit 'Contact Us', disabled: true, :id => "contact_submit_btn" %></div>
+    <div><%= f.submit 'Contact Us', :id => "contact_submit_btn" %></div>
 <% end %>
 
 <br>

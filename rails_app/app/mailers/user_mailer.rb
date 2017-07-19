@@ -1,13 +1,15 @@
 class UserMailer < ApplicationMailer
+  require 'json'
 
   def contact_us(person)
-    @name =person[:name]
-    mail(:to => person[:email], :subject => 'Acknowledgement mail')
+    person = JSON.parse(person)
+    @name =person['name']
+    mail(:to => person['email'], :subject => 'Acknowledgement mail')
   end
 
-  def registeration_mail(user)
+  def registeration_mail(user,password)
     @email = user.email
-    @data = user.password
+    @data = password
     mail(:to => @email, :subject => 'Acknowledgement mail')
   end
 end

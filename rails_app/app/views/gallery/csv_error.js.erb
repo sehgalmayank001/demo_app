@@ -1,4 +1,5 @@
 $("#csv_error").html("")
+$('#csv_error').show()
 $('#csv_error').append("<ul id='newList'></ul>");
 <% for cnt in 0...@errors.length %>
   $("#newList").append("<li><%= escape_javascript(@errors[cnt]) %></li>");

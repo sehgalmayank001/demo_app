@@ -15,8 +15,29 @@
   filename = $('#import_csv_field').val()
   if filename.split('.')[1]!= 'csv'
     $('#import_btn').attr 'disabled', 'true'
-    $('.import_file_error')[0].style.display = 'inline-block'
+    $('.import_file_error')[0].style.display = 'inline'
   else
     $('#import_btn').removeAttr 'disabled'
     $('.import_file_error')[0].style.display = 'none'
+  return
+
+@get_image_count= () ->
+  if window.location.href.split('/').pop(-1) =='gallery'
+    $('#img_cnt').css 'color', 'yellow'
+    $('body').addClass("loading")
+    $.ajax
+      url: '/gallery/get_img_cnt'
+      type: "GET"
+      dataType: "json"
+      success: (response) ->
+        localStorage.setItem("img-cnt", null)
+        localStorage.setItem("img-cnt", response)
+        $('#img_cnt').append response
+        $('#img_cnt').css 'color', 'green'
+        return
+      complete: ->
+        $('body').removeClass("loading")
+        return
+  else
+    $('#img_cnt').append localStorage.getItem("img-cnt")
   return

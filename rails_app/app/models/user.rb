@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   private
   def send_registratio_mail
-    UserMailer.registeration_mail(self).deliver!
+    UserMailer.registeration_mail(self,self.password).deliver_later
   end
 
   def generate_authentication_token!

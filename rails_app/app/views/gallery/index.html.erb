@@ -1,26 +1,16 @@
   <h1 style="padding-left: 3% ;padding-top: 1%;">Gallery</h1>
+  <div id="img_cnt" , onchange ="get_image_count()">Total Count: </div>
   <% if !@images.any? %>
     <h2> Sorry no images to display...!!! </h2>
     <div class="containerr">
   <% else %>
-
-  <div class ="image-container row column">
-    <%  @images.each do |image| %>
-      <div class="containerr-i column small-12 large-3 medium-4 ">
-        <div id="<%= image.name %>" class="img-nm" ><%= image.name %></div>
-        <%= link_to image.image_url , target: "_blank" , :action => 'go', class: 'img-div' do %>
-          <div class="img-divv" style="background-image: url(<%= image.image_url(:thumb).to_s%>);">
-          </div>
-        <%end %>
-        <%= submit_tag " edit ",  data:{ open: "exampleModal"+image.id.to_s }, style: "width: 90.71px" %>
-      </div>
-        <%= render :partial => 'update_name' , :locals => {:image => image} %>
-    <% end %>
-  </div></br>
-
-      <div class="containerr">
-
-    <%= paginate @images %>
+  <div id="images">
+    <%= render 'images' %>
+  </div>
+  <div class="containerr">
+    <div id='paginator'>
+    <%= paginate @images %></div>
+    <!-- :remote => true  -->
   <% end %>
 
 <br>
@@ -48,3 +38,4 @@
  <h2>Import Products</h2>
 <%= submit_tag " Upload CSV",  data:{ open: "csvUploadModal" } %>
 <%= render :partial => 'upload_csv' %>
+<div class="modal"></div>

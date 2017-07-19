@@ -36,6 +36,7 @@
   contact_email = $('#person_email').val()
   contact_no = $('#person_mobile_no').val()
   desc = $('#person_description').val()
+  mobile_no = name = email = true
   if contact_name != ''
     $('.name-error')[0].style.display = 'none'
     name = allLetter(contact_name)
@@ -52,17 +53,12 @@
     if !alldigits(contact_no)
       $('.mobile-no-error')[0].style.display = 'inline-block'
       $('.mobile-no-error-dig')[0].style.display = 'none'
+      mobile_no = false
     else if alldigits(contact_no) and !stringlength(contact_no, 10, 10)
       $('.mobile-no-error')[0].style.display = 'none'
       $('.mobile-no-error-dig')[0].style.display = 'inline-block'
-    else
-      mobile_no = true
-  if desc != ''
-    $('.desc-error')[0].style.display = 'none'
-    desc = true
-  else
-    $('.desc-error')[0].style.display = 'inline-block'
-  if name and email and mobile_no and desc
+      mobile_no = false
+  if name and email and mobile_no
     $('#contact_submit_btn').removeAttr 'disabled'
   else
     $('#contact_submit_btn').attr 'disabled', 'true'
@@ -71,61 +67,40 @@
 
 @validate_signup_form = ->
   signup_email = $('#user_email').val()
-  # user_password = $('#user_password').val()
-  # user_password_confirmation = $('#user_password_confirmation').val()
   if signup_email != ''
     $('.email-error')[0].style.display = 'none'
     email = validateEmail(signup_email)
     if !email
       $('.email-error')[0].style.display = 'inline-block'
-  # if user_password != ''
-  #   $('.pswd-error')[0].style.display = 'none'
-  #   pswd = stringlength(user_password, 6, 10) and validpassword(user_password)
-  #   if !pswd
-  #     $('.pswd-error')[0].style.display = 'inline-block'
-  #  if user_password_confirmation != ''
-  #       $('.pswd-cnfrm-error')[0].style.display = 'none'
-  #       pswd_cnfrm = user_password.localeCompare(user_password_confirmation)
-  #       if pswd_cnfrm != 0
-  #        $('.pswd-cnfrm-error')[0].style.display = 'inline-block'
   if email
     $('#signup_submit_btn').removeAttr 'disabled'
   else
     $('#signup_submit_btn').attr 'disabled', 'true'
   return
 
-@validate_signin_form = ->
-  signup_email = $('#user_email').val()
-  user_password = $('#user_password').val()
-  if signup_email != ''
-    $('.email-error')[0].style.display = 'none'
-    email = validateEmail(signup_email)
-    if !email
-      $('.email-error')[0].style.display = 'inline-block'
-  if user_password != ''
-    $('.pswd-error')[0].style.display = 'none'
-    pswd = true
-  else
-    $('.pswd-error')[0].style.display = 'inline-block'
-  if email and pswd
-    $('#signin_submit_btn').removeAttr 'disabled'
-  else
-    $('#signin_submit_btn').attr 'disabled', 'true'
-  return
-
 @match_passords = ->
   user_password = $('#user_password').val()
   user_password_confirmation = $('#user_password_confirmation').val()
+  if user_password_confirmation == '' and user_password==''
+    $('.pswd-cnfrm-error')[0].style.display = 'none'
+    $('#change_pswd_btn').removeAttr 'disabled'
   if user_password_confirmation != '' and user_password!=''
         $('.pswd-cnfrm-error')[0].style.display = 'none'
+        $('#change_pswd_btn').removeAttr 'disabled'
         pswd_cnfrm = user_password.localeCompare(user_password_confirmation)
         if pswd_cnfrm != 0
          $('.pswd-cnfrm-error')[0].style.display = 'inline-block'
+         $('#change_pswd_btn').attr 'disabled', 'true'
   return
 
 @double_pswd_check = ->
   match_passords()
   not_repeated()
+  check_whitespace()
+  if $('.error')[0].style.display != 'none' or $('.error')[1].style.display != 'none' or $('.error')[2].style.display != 'none'
+    $('#change_pswd_btn').attr 'disabled', 'true'
+  else
+    $('#change_pswd_btn').removeAttr 'disabled'
   return
 
 @not_repeated = ->
@@ -133,6 +108,18 @@
   user_current_password = $('#user_current_password').val()
   if user_password!='' && user_current_password!='' && user_password.localeCompare(user_current_password)==0
     $('.pswd-same-error')[0].style.display = 'inline-block'
+    $('#change_pswd_btn').attr 'disabled', 'true'
   else
     $('.pswd-same-error')[0].style.display = 'none'
+    $('#change_pswd_btn').removeAttr 'disabled'
+  return
+
+@check_whitespace = ->
+  user_password = $('#user_password').val()
+  if user_password!='' and !(/^\S*$/.test(user_password))
+    $('.whitespace-error')[0].style.display = 'inline-block'
+    $('#change_pswd_btn').attr 'disabled', 'true'
+  else
+    $('.whitespace-error')[0].style.display = 'none'
+    $('#change_pswd_btn').removeAttr 'disabled'
   return

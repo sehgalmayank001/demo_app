@@ -1,26 +1,29 @@
-<h2>Log in</h2>
+<h2 class="form_heading">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %>  <span class="error email-error">Invalid Email</span><br />
-    <%= f.email_field :email, autofocus: true ,:required => true, :onchange => "validate_signin_form()" %>
+    <%= f.label :email %>  <span class="error email-error">Invalid Email</span>
+    <%= f.email_field :email, autofocus: true ,:required => true, :onchange => "validate_signup_form()" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><span class="error pswd-error">Password Required</span><br />
-    <%= f.password_field :password, autocomplete: "off",:required => true, :onchange => "validate_signin_form()" %>
+    <%= f.label :password %><span class="error pswd-error">Password Required</span>
+    <%= f.password_field :password, autocomplete: "off",:required => true  %>
+    <!-- :onchange => "validate_signin_form()" -->
   </div>
 
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
+    <span style="float:right;">  <%= link_to "Forgot Password?", new_password_path(resource_name) %></span>
     </div>
   <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" , disabled: true, :id => "signin_submit_btn" %>
+  <div class="actions field btn-btn">
+    <%= f.submit "Log in", :id => "signup_submit_btn" ,:style=>"width:104%; height: 30px;"%>
   </div>
 <% end %>
-
+<div class="field shared_links">
 <%= render "devise/shared/links" %>
+</div>

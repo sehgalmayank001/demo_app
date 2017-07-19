@@ -7,7 +7,7 @@ class ContactUsController < ApplicationController
     person = contact_us_params
     @person=ContactUs.new(person)
     if @person.save
-      UserMailer.contact_us(person).deliver!
+      UserMailer.contact_us(person.to_json).deliver_later
     else
       render 'new'
     end

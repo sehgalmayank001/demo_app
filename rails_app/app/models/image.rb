@@ -3,19 +3,20 @@ class Image < ApplicationRecord
   require 'uri'
   mount_uploader :image, ImageUploader
   mount_base64_uploader :image, ImageUploader
-  validates_presence_of :image
+  validates_presence_of :image,:name
   validate :name_validation
   belongs_to :user
 
   def self.import(file,user_id)
+    # begin
     @errors =[]
     cnt=0
     if File.zero?(file.path) then return @errors << "Empty file." end
     csv_file =  CSV.read(file.path, headers: true)
     if csv_file.count == 0 then return  @errors << "No records in file." end
-    if  csv_file.headers.empty? then return @errors << "Headers missing in file." end
-    if !csv_file.headers.include?('name') then return @errors << "Name header missing." end
-    if !csv_file.headers.include?('image') then return @errors << "Image header missing." end
+    if csv_file.headers.empty? then return @errors << "Headers missing in file." end
+    if !csv_file.headers.include?('name') then return @errors << "name header missing." end
+    if !csv_file.headers.include?('image') then return @errors << "image header missing." end
       csv_file.each do |row|
         if row['image'] && !validate_url?(row['image'])
           @errors << "Invalid image url for image #{cnt}"
@@ -33,7 +34,10 @@ class Image < ApplicationRecord
         end
         cnt+=1
       end
-    @errors
+      @errors
+    # rescue CSV::MalformedCSVError => e
+    #   @errors << "#{e.message}"
+    # end
   end
 
 private
